@@ -15,4 +15,14 @@ describe('Users route', () => {
     const data = await response.text()
     expect(data).toBe('user registred successfully')
   })
+
+  it('should return json content type', async () => {
+    const data = await fetch(BASE_URL)
+    expect(data.headers.get('Content-Type')).toBe('application/json')
+  })
+
+  it('should return some data when send a get request', async () => {
+    const data = await fetch(BASE_URL)
+    expect(data.body).not.toBe(undefined)
+  })
 })
