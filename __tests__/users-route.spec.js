@@ -25,4 +25,15 @@ describe('Users route', () => {
     const data = await fetch(BASE_URL)
     expect(data.body).not.toBe(undefined)
   })
+
+  it('should return user data by id', async () => {
+    const userAmount = await fetch(BASE_URL)
+    const data = await userAmount.json()
+
+    for (let id = 1; id <= data.length; id++) {
+      const response = await fetch(`${BASE_URL}/${id}`)
+      const data = await response.json()
+      expect(data.id).toBe(id)
+    }
+  })
 })
