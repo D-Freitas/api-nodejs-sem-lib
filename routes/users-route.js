@@ -3,6 +3,11 @@ const { getRequestData } = require('../utils/get-request-data.js')
 const usersRepository = new UsersRepository()
 
 const routes = {
+  '/users:get': (request, response) => {
+    const data = usersRepository.list()
+    response.write(JSON.stringify(data, null, 2))
+    response.end()
+  },
   '/users:post': async (request, response) => {
     const data = await getRequestData(request)
     usersRepository.insert(JSON.parse(data))
