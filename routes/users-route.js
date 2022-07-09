@@ -8,6 +8,11 @@ const routes = {
     response.write(JSON.stringify(data, null, 2))
     response.end()
   },
+  '/users:get-by-id': (request, response, id) => {
+    const data = usersRepository.listById(id)
+    response.write(JSON.stringify(data, null, 2))
+    response.end()
+  },
   '/users:post': async (request, response) => {
     const data = await getRequestData(request)
     usersRepository.insert(JSON.parse(data))
